@@ -18,11 +18,9 @@ public class TodoDaoImpl implements TodoDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-
 	@Override
 	public void addTodo(Todo todo) {
 		Session sess=sessionFactory.getCurrentSession();
-		System.out.println("In TodoDao");
 		sess.save(todo);
 	}
 	
@@ -31,10 +29,8 @@ public class TodoDaoImpl implements TodoDao {
 		String hql="from Todo a where a.users.userName=:uname";
 		Session sess=sessionFactory.getCurrentSession();
 		Query qry=sess.createQuery(hql);
-		System.out.println("***"+username);
 		qry.setString("uname", username);
 		List<Todo> todoList=qry.list();
-		System.out.println("******getTodoList>>:"+todoList.size());
 		return todoList;
 	}
 }
