@@ -16,8 +16,6 @@
 		<servlet-name>dat</servlet-name>
 		<url-pattern>/app/*</url-pattern>
 	</servlet-mapping>
-	<!-- Work around for issue - 
-		could not find key 'spring.livebeansview.mbeandomain' in any property source -->
 	<context-param>
 		<param-name>spring.profiles.active</param-name>
 		<param-value>dev</param-value>
@@ -26,6 +24,8 @@
 		<param-name>spring.profiles.default</param-name>
 		<param-value>dev</param-value>
 	</context-param>
+<!-- Work around for issue - 
+		could not find key 'spring.livebeansview.mbeandomain' in any property source -->
 	<context-param>
 		<param-name>spring.liveBeansView.mbeanDomain</param-name>
 		<param-value>dev</param-value>
