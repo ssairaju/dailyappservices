@@ -30,7 +30,6 @@ public class UserServImpl implements UserServ {
 	public int createRemainder(Reminder reminder) {
 		int res=0;
 		try{
-			System.out.println("******createRemainder Service");
 			dao.createRemainder(reminder);
 			res=1;
 		}catch(Exception e){
@@ -40,7 +39,6 @@ public class UserServImpl implements UserServ {
 
 	@Override
 	public User getUserByUserName(String uname) {
-		System.out.println("Service***"+uname);
 		return dao.getUserByUserName(uname);
 	}
 
@@ -54,7 +52,6 @@ public class UserServImpl implements UserServ {
 			rf.setTitle(reminder.getTitle());
 			userReminderList.add(rf);
 		}
-		
 		return userReminderList;
 	}
 
@@ -77,12 +74,5 @@ public class UserServImpl implements UserServ {
 	@Override
 	public List<Category> getCategories() {
 		return dao.getCategories();
-		/*List<String> categoryList = new ArrayList<String>();
-		categoryList.add("");
-		categoryList.add("Medication");
-		categoryList.add("Grocery");
-		categoryList.add("Remainders");
-		categoryList.add("Spending");
-		return categoryList;*/
 	}
 }
