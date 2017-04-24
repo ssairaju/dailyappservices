@@ -29,7 +29,6 @@ public class UserDaoImpl implements UserDao {
 		query.setParameter("pass",password);
 		List results = query.list();
 		User us=null;
-
 		if(results.size()>0){
 			us=(User) results.get(0);
 			return us;
@@ -41,22 +40,17 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void createRemainder(Reminder reminder) {
 		Session sess=sessionFactory.getCurrentSession();
-		System.out.println("****createRemainder DAO");
 		sess.save(reminder);
-
 	}
 
 	@Override
-	public User getUserByUserName(String uname) {
-		System.out.println("***"+uname);		
+	public User getUserByUserName(String uname) {		
 		String hql="from User u where u.userName=:uname";
 		Session sess=sessionFactory.getCurrentSession();
 		Query qry=sess.createQuery(hql);
 		qry.setString("uname", uname);
 		User u=(User) qry.uniqueResult();
-
 		return u;
-
 	}
 
 	@Override
@@ -64,10 +58,8 @@ public class UserDaoImpl implements UserDao {
 		String hql="from Reminder a where a.users.userName=:uname";
 		Session sess=sessionFactory.getCurrentSession();
 		Query qry=sess.createQuery(hql);
-		System.out.println("***"+username);
 		qry.setString("uname", username);
 		List<Reminder> reminderList=qry.list();
-		System.out.println("******getAllReminders>>:"+reminderList.size());
 		return reminderList;
 	}
 
@@ -91,7 +83,6 @@ public class UserDaoImpl implements UserDao {
 		Session sess=sessionFactory.getCurrentSession();
 		Query qry=sess.createQuery(hql);
 		List<Category> categoryList=qry.list();
-		System.out.println("******getCategories>>:"+categoryList.size());
 		return categoryList;
 	}
 }
