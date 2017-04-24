@@ -30,10 +30,8 @@ public class ActivityTrackerController {
 
 	@RequestMapping(value = "/isvalid", method = RequestMethod.POST)
 	public User isValid(@RequestBody User user){
-
 		User us= ser.isValidUser(user.getUserName(), user.getPassword());
 		System.out.println(us.getUserName());
-
 		return us;
 	}
 
@@ -47,7 +45,6 @@ public class ActivityTrackerController {
 		saveUser.setEmail(user.getEmail());
 		saveUser.setPassword(user.getPassword());
 		String msg= ser.saveUser(saveUser);
-		System.out.println("msg>>>:"+msg);
 		return us;
 	}
 
@@ -56,37 +53,29 @@ public class ActivityTrackerController {
 		Reminder reminder = new Reminder();
 		reminder.setText(reminderForm.getText());
 		reminder.setTitle(reminderForm.getTitle());
-		System.out.println("reminderForm.getUsername()>>:"+reminderForm.getUserName());
 		reminder.setUsers(ser.getUserByUserName(reminderForm.getUserName()));
 		int res= ser.createRemainder(reminder);
 		if(res==1){
 			return reminderForm;
 		}
 		return null;
-
 	}
 
 	@RequestMapping(value = "/getReminders/{username}", method = RequestMethod.GET, headers="Accept=application/json")
 	public List<ReminderForm> getReminders(@PathVariable String username){
-		System.out.println("username>>:"+username);
-
 		List<ReminderForm> reminderList = ser.getReminders(username);
 		return reminderList;
 	}
 	
 	@RequestMapping(value = "/getCategories", method = RequestMethod.GET, headers="Accept=application/json")
 	public List<Category> getCategories(){
-		System.out.println("getCategories***");
-
 		List<Category> catList=ser.getCategories();
 		return catList;
 	}
 	
 	@RequestMapping(value = "/getTodo/{userName}", method = RequestMethod.GET, headers="Accept=application/json")
 	public List<TodoForm> getTodo(@PathVariable String userName){
-		logger.info("username>>:"+userName);
 		List<TodoForm> todoList = todoService.getTodo(userName);
-		
 		return todoList;
 	}
 	
@@ -95,7 +84,6 @@ public class ActivityTrackerController {
 		TodoForm tf = new TodoForm();
 		User user = ser.getUserByUserName(todoForm.getUserName());
 		String msg = todoService.addTodoTask(todoForm, user);
-		System.out.println("Add TODO Msg>>:"+msg);
 		return tf;
 	}
 	
